@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body style="background-color:greenyellow;">
+    <h1>Books list</h1>
+    <div>
+    <table style="text-align:center;">
+        <thead style="font-family:verdana;">
+            <tr style="color:blue;">
+                <th >Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td><a class="btn btn-primary" href="{{ path('books_show', { 'id': book.id }) }}">{{ book.id }}</a></td>
+                <td style="font-size:100%;">{{book.title }}</td>
+                <td>{{ book.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="btn btn-info" href="{{ path('books_show', { 'id': book.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-secondary btn-br" href="{{ path('books_edit', { 'id': book.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <ul>
+        <li>
+            <a class="btn btn-danger" href="{{ path('books_new') }}">Create a new book</a>
+        </li>
+    </ul>
+{% endblock %}
